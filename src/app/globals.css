@@ -232,7 +232,6 @@
   html {
     @apply font-sans;
     min-width: 320px;
-    scroll-behavior: smooth;
   }
 
   body {
