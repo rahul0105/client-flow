@@ -13,7 +13,17 @@ import {
 
 import { Sidebar } from "./Sidebar";
 
-export function MobileSidebar() {
+interface MobileSidebarProps {
+  workspace: {
+    name: string;
+    slug: string;
+    logo: string | null;
+  } | null;
+}
+
+export function MobileSidebar({
+  workspace,
+}: MobileSidebarProps) {
   return (
     <Sheet>
       <SheetTrigger
@@ -37,7 +47,10 @@ export function MobileSidebar() {
           <SheetTitle>ClientFlow navigation</SheetTitle>
         </SheetHeader>
 
-        <Sidebar mobile />
+        <Sidebar
+          mobile
+          workspace={workspace}
+        />
       </SheetContent>
     </Sheet>
   );

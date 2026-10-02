@@ -58,9 +58,23 @@ const secondaryNavigation = [
 
 interface SidebarProps {
   mobile?: boolean;
+  workspace: {
+    name: string;
+    slug: string;
+    logo: string | null;
+  } | null;
 }
 
-export function Sidebar({ mobile = false }: SidebarProps) {
+export function Sidebar({ mobile = false, workspace }: SidebarProps) {
+  const workspaceName = workspace?.name || "Workspace";
+
+const workspaceInitials = workspaceName
+  .split(/\s+/)
+  .filter(Boolean)
+  .slice(0, 2)
+  .map((word) => word[0])
+  .join("")
+  .toUpperCase();
   return (
     <aside className="flex h-full w-full flex-col bg-sidebar text-sidebar-foreground">
       {/* Brand */}
@@ -109,7 +123,7 @@ export function Sidebar({ mobile = false }: SidebarProps) {
       <div className="shrink-0 border-t border-sidebar-border p-3">
         <button
           type="button"
-          title="Rahul Digital Studio"
+          title={workspace?.name || "Workspace"}
           className={`flex w-full items-center rounded-md p-2 text-left transition-colors hover:bg-sidebar-accent ${
             mobile
               ? "justify-start gap-3"
@@ -117,7 +131,7 @@ export function Sidebar({ mobile = false }: SidebarProps) {
           }`}
         >
           <div className="flex size-8 shrink-0 items-center justify-center rounded-md bg-sidebar-accent text-xs font-semibold">
-            RD
+            {workspaceInitials}
           </div>
 
           <div
@@ -128,12 +142,9 @@ export function Sidebar({ mobile = false }: SidebarProps) {
             }
           >
             <p className="truncate text-sm font-medium">
-              Rahul Digital Studio
-            </p>
+  {workspace?.name || "Workspace"}
+</p>
 
-            <p className="truncate text-xs text-sidebar-foreground/60">
-              Workspace
-            </p>
           </div>
 
           <span
