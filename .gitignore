@@ -22,3 +22,6 @@ dist/
 # Audit reports
 audit-report.json
 audit-report-*.json
+
+# TypeScript build cache
+*.tsbuildinfo
